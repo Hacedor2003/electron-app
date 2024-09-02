@@ -3,6 +3,7 @@ function App(): JSX.Element {
     <>
       <h1>Hola Mundo</h1>
       <p>Esto es una prueba del update</p>
+      <p>Esto es desde github</p>
     </>
   )
 }
