@@ -3,7 +3,7 @@ function App(): JSX.Element {
     <>
       <h1>Hola Mundo</h1>
       <p>Esto es una prueba del update</p>
-      <p>Version 1.5.0</p>
+      <p>Version 1.6.0</p>
     </>
   )
 }
