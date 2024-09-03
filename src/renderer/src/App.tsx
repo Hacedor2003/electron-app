@@ -1,13 +1,41 @@
+/* eslint-disable prettier/prettier */
 import { useState } from 'react'
 
-/* eslint-disable prettier/prettier */
 function App(): JSX.Element {
-  const [mensaje, setMensaje] = useState('')
+  const [updateMessage, setUpdateMessage] = useState('')
+  const [updateMessageResponse, setUpdateMessageResponse] = useState('')
+  const [updateNotAvailable, setUpdateNotAvailable] = useState('')
+  const [updateDownloades, setUpdateDownloades] = useState('')
+  const [updateError, setUpdateError] = useState('')
   
   window.context
       .updateMessage()
       .then((response) => {
-        setMensaje(response)
+        setUpdateMessage(response)
+      })
+      .catch((error) => console.log(error))
+  window.context
+      .updateMessageResponse()
+      .then((response) => {
+        setUpdateMessageResponse(response)
+      })
+      .catch((error) => console.log(error))
+  window.context
+      .updateNotAvailable()
+      .then((response) => {
+        setUpdateNotAvailable(response)
+      })
+      .catch((error) => console.log(error))
+  window.context
+      .updateDownloades()
+      .then((response) => {
+        setUpdateDownloades(response)
+      })
+      .catch((error) => console.log(error))
+  window.context
+      .updateError()
+      .then((response) => {
+        setUpdateError(response)
       })
       .catch((error) => console.log(error))
 
@@ -16,7 +44,11 @@ function App(): JSX.Element {
       <h1>Hola Mundo</h1>
       <p>Esto es una prueba del update</p>
       <p>Version 1.7.0</p>
-      <p>Mensaje prueba: {mensaje}</p>
+      <p>Mensaje update: {updateMessage}</p>
+      <p>Mensaje response: {updateMessageResponse}</p>
+      <p>Mensaje no disponible: {updateNotAvailable}</p>
+      <p>Mensaje descarga: {updateDownloades}</p>
+      <p>Mensaje error: {updateError}</p>
     </>
   )
 }

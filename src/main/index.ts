@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 import { app, BrowserWindow, ipcMain } from 'electron'
 import { autoUpdater } from 'electron-updater'
@@ -34,22 +35,22 @@ autoUpdater.on('update-available', () => {
   ipcMain.handle('updateMessage', () => `Update available. Current version ${app.getVersion()}`)
   console.log(`Update available. Current version ${app.getVersion()}`)
   const pth = autoUpdater.downloadUpdate()
-  ipcMain.handle('updateMessage', () => pth)
+  ipcMain.handle('updateMessageResponse', () => pth)
   console.log(pth)
 })
 
 autoUpdater.on('update-not-available', () => {
-  ipcMain.handle('updateMessage', () => `No update available. Current version ${app.getVersion()}`)
+  ipcMain.handle('updateNotAvailable', () => `No update available. Current version ${app.getVersion()}`)
   console.log(`No update available. Current version ${app.getVersion()}`)
 })
 
 autoUpdater.on('update-downloaded', () => {
-  ipcMain.handle('updateMessage', () => `Update downloaded. Current version ${app.getVersion()}`)
+  ipcMain.handle('updateDownloades', () => `Update downloaded. Current version ${app.getVersion()}`)
   console.log(`Update downloaded. Current version ${app.getVersion()}`)
 })
 
 autoUpdater.on('error', (info) => {
-  ipcMain.handle('updateMessage', () => info)
+  ipcMain.handle('updateError', () => info)
   console.log(info)
 })
 

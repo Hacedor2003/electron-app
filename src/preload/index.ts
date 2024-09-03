@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
@@ -12,7 +13,11 @@ if (process.contextIsolated) {
     contextBridge.exposeInMainWorld('electron', electronAPI)
     contextBridge.exposeInMainWorld('api', api)
     contextBridge.exposeInMainWorld('context', {
-      updateMessage: (...args) => ipcRenderer.invoke('updateMessage', ...args)
+      updateMessage: (...args) => ipcRenderer.invoke('updateMessage', ...args),
+      updateMessageResponse: (...args) => ipcRenderer.invoke('updateMessageResponse', ...args),
+      updateNotAvailable: (...args) => ipcRenderer.invoke('updateNotAvailable', ...args),
+      updateDownloades: (...args) => ipcRenderer.invoke('updateDownloades', ...args),
+      updateError: (...args) => ipcRenderer.invoke('updateError', ...args),
     })
   } catch (error) {
     console.error(error)
