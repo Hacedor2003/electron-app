@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function App(): JSX.Element {
   const [updateMessage, setUpdateMessage] = useState('')
@@ -7,37 +7,39 @@ function App(): JSX.Element {
   const [updateNotAvailable, setUpdateNotAvailable] = useState('')
   const [updateDownloades, setUpdateDownloades] = useState('')
   const [updateError, setUpdateError] = useState('')
-  
-  window.context
+
+  useEffect(() => {
+    window.context
       .updateMessage()
       .then((response) => {
         setUpdateMessage(response)
       })
       .catch((error) => console.log(error))
-  window.context
+    window.context
       .updateMessageResponse()
       .then((response) => {
         setUpdateMessageResponse(response)
       })
       .catch((error) => console.log(error))
-  window.context
+    window.context
       .updateNotAvailable()
       .then((response) => {
         setUpdateNotAvailable(response)
       })
       .catch((error) => console.log(error))
-  window.context
+    window.context
       .updateDownloades()
       .then((response) => {
         setUpdateDownloades(response)
       })
       .catch((error) => console.log(error))
-  window.context
+    window.context
       .updateError()
       .then((response) => {
         setUpdateError(response)
       })
       .catch((error) => console.log(error))
+  }, [updateMessage, updateMessageResponse, updateNotAvailable, updateDownloades, updateError])
 
   return (
     <>
