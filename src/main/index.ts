@@ -3,13 +3,11 @@ import { app, BrowserWindow, ipcMain } from 'electron'
 import { autoUpdater } from 'electron-updater'
 import MainScreen from './MainScreen'
 
-let mainWindow
-
 autoUpdater.autoDownload = false
 autoUpdater.autoInstallOnAppQuit = true
 
 function createWindow(): void {
-  mainWindow = new MainScreen()
+  new MainScreen()
 }
 
 app.whenReady().then(() => {
